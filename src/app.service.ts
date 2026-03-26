@@ -32,9 +32,9 @@ export class AppService {
       );
 
       // 4. Disparar alertas por WhatsApp (Sandbox)
-      const message = `🚨 URGENTE: Se ha detectado un ${eventName} en ${cityToAlert}. Busque refugio de inmediato. Llama a Advanced plumbing`;
-
       for (const customer of affectedCustomers) {
+        const message = `🚨 URGENT: Hello ${customer.display_name}. A ${eventName} has been issued for ${cityToAlert}. Seek shelter immediately. Call Advance Team for emergency services.`;
+
         await this.messages.sendWhatsAppAlert(customer.mobile_phone, message);
       }
 
