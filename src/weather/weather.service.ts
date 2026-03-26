@@ -7,6 +7,10 @@ export interface NWSAlert {
     event: string;
     headline: string;
     description: string;
+    areaDesc: string;
+    severity: string;
+    urgency: string;
+    expires: string;
   };
 }
 
@@ -31,16 +35,5 @@ export class WeatherService {
 
     // 4. Ahora response.data está tipado correctamente
     return response.data.features;
-  }
-
-  getSimulatedAlert(): NWSAlert {
-    return {
-      properties: {
-        event: 'Tornado Warning',
-        headline: 'Tornado Warning issued March 26 for Kankakee, IL',
-        description:
-          'DANGEROUS TORNADO DETECTED NEAR KANKAKEE. TAKE SHELTER NOW.',
-      },
-    };
   }
 }

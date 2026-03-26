@@ -16,9 +16,14 @@ export class AppService {
       `[${new Date().toISOString()}] Iniciando chequeo de tormentas...`,
     );
     const alerts: NWSAlert[] = await this.weather.getActiveAlerts();
-    const hasTornado: boolean =
-      alerts.some((a: NWSAlert) => a.properties.event.includes('Tornado')) ||
-      true; // El || true es para tu prueba del 26/03
+    const tornadoAlert = alerts.find(
+      (a) =>
+        (a.properties.event === 'Tornado Warning' ||
+          a.properties.event === 'Tornado Watch') &&
+        a.properties.areaDesc.includes('Kankakee'),
+    );
+
+    const hasTornado = !!tornadoAlert;
 
     if (hasTornado) {
       const cityToAlert = 'Kankakee';
